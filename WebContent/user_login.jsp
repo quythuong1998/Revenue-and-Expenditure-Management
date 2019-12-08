@@ -30,7 +30,7 @@
                   <form class="user" action="user_login" method="post" role="form">
                     <div class="form-group">
                       <input type="text" class="form-control form-control-user" id="exampleInputUsername"
-                        aria-describedby="usernameHelp" placeholder="Enter Username... ^^!" name="UserName">
+                        aria-describedby="usernameHelp" placeholder="Enter Username..." name="UserName">
                     </div>
                     <div class="form-group">
                       <input type="password" class="form-control form-control-user" id="exampleInputPassword"
