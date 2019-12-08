@@ -187,7 +187,26 @@
                 <div class="card-body d-flex align-items-center">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1" >total revenue this month</div>
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1" >total revenue</div>
+                      
+                      <%
+                       if(ng!=null ){
+		               int uId =  ng.getID();
+					   int sumRevenue=0;
+		               int sumExpenditure=0;
+		               int sum=0;
+					   List<money_management> mn = moneyManagementDAO.listMoney(uId);
+									for(money_management m1 : mn) {
+										if(m1.getType()==1)
+											sumRevenue+=Integer.parseInt(m1.getMoney());									
+										if(m1.getType()==2)
+											sumExpenditure +=Integer.parseInt(m1.getMoney());
+									}
+						sum=sumRevenue-sumExpenditure;%>
+						<div><%=sumRevenue %></div>
+                       
+                      
+                      
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
                           
@@ -216,8 +235,8 @@
                 <div class="card-body d-flex align-items-center">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">total spending this month</div>
-                     
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">total spending</div>
+                     <div><%=sumExpenditure %></div>
                      <div class="h1 mb-0 font-weight-bold text-gray-800" id="spending"></div>
                        	  
                           
@@ -272,10 +291,10 @@
 						  <tbody id="tbody">
 						  
 		                     <%  if(ng!=null ){%>
-		                     <% int uId =  ng.getID();%>
-		                    	<%	int id=1; 
-									List<money_management> mn = moneyManagementDAO.listMoney(uId);
-									for(money_management m : mn) {
+		                     
+		                    	<%	int id=1;
+		                    		for(money_management m : mn) {
+											
 								%>
 							<tr>
 								<td><%=id++ %></td>
@@ -310,15 +329,13 @@
                   <div class="chart-pie pt-4 pb-2 d-flex align-items-center justify-content-between">
                      <div class="h1 mb-0 font-weight-bold text-gray-800" id="balance">
                      
-                     
+                     	<div style="padding-left:90px"><%=sum %></div>
+                  		<%}%>
                      </div>
                      
                     
                     
-                    <script> 
-                    
-                    sum();
-                    </script>
+
                   </div>
                   <div class="mt-4 text-center small">
                     <span class="mr-2">

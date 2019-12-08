@@ -44,7 +44,7 @@ public class user_login extends HttpServlet {
 		if(check == false){
 			
 			request.setAttribute("errorMessage", "Sai tài khoản hoặc mật khẩu!");
-			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/user_login.jsp");
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/user_login.jsp");
 			dispatcher.forward(request, response);
 			return;
 			
