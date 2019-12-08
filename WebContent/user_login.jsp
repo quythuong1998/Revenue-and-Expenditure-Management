@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="Model.user"%>
 <!DOCTYPE html>
 <html>
 
@@ -26,40 +27,36 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>
-                  <form class="user">
+                  <form class="user" action="user_login" method="post" role="form">
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                        aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                      <input type="text" class="form-control form-control-user" id="exampleInputUsername"
+                        aria-describedby="usernameHelp" placeholder="Enter Username... ^^!" name="UserName">
                     </div>
                     <div class="form-group">
                       <input type="password" class="form-control form-control-user" id="exampleInputPassword"
-                        placeholder="Password">
+                        placeholder="Password" name="PassWord">
                     </div>
-                    <div class="form-group">
-                      <div class="custom-control custom-checkbox small">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Remember
-                          Me</label>
-                      </div>
-                    </div>
-                    <a href="index.html" class="btn btn-primary btn-user btn-block">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <button class="btn btn-primary btn-user btn-block" type="submit">
                       Login
-                    </a>
-                    <hr>
-                    <a href="index.html" class="btn btn-google btn-user btn-block">
-                      <i class="fab fa-google fa-fw"></i> Login with Google
-                    </a>
-                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                      <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                    </a>
-                  </form>
-                  <hr>
+                    </button>
+                    
+                   
                   <div class="text-center">
                     <a class="small" href="forgot-password.html">Forgot Password?</a>
                   </div>
                   <div class="text-center">
                     <a class="small" href="register.html">Create an Account!</a>
                   </div>
+                  
+                  <%user u =(user) session.getAttribute("username");%>
+<%--                   <%if(u!=null && u.getRole() ==1 ){%> --%>
+<!--                   <h1>Xin chao admin</h1> -->
+<%--                   <%} %> --%>
+<%--                   <%if(u!=null){%> --%>
+<%--                 	<jsp:include page="/dashboard.jsp"></jsp:include> --%>
+<%--                   <%} %> --%>
+                  
                 </div>
               </div>
             </div>

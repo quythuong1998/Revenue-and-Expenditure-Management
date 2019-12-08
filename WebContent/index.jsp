@@ -1,4 +1,5 @@
 <%-- <%@page import="Model.nguoidung"%> --%>
+<%@page import="Model.user"%> 
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -21,7 +22,15 @@
         </div>
         <div class="col-lg-8 align-self-baseline">
           <p class="text-white-75 font-weight-light mb-5">One application it's hejp you manage your money, and tatistics your spending in a better way</p>
-          <a class="btn btn-primary btn-xl js-scroll-trigger" href="/money_management/dashboard.jsp">Try it now</a>
+          	<%user u =(user) session.getAttribute("username");%>
+                 <%if(u!=null ){%> --%>
+	          		<a class="btn btn-primary btn-xl js-scroll-trigger" href="/money_management/user_login.jsp">Try it now</a>
+                  <%} %>
+              	<%if(u==null ){%> --%>
+	          		<a class="btn btn-primary btn-xl js-scroll-trigger" href="/money_management/dashboard.jsp">Try it now</a>
+                 <%} %>
+              
+
         </div>
       </div>
     </div>

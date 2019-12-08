@@ -39,10 +39,10 @@ public class user {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getQuyenhan() {
+	public int getRole() {
 		return role;
 	}
-	public void setQuyenhan(int role) {
+	public void setRole(int role) {
 		this.role = role;
 	}
 	@Override
