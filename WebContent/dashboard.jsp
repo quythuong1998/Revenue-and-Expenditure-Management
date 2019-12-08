@@ -1,5 +1,10 @@
+<%@page import="com.sun.javafx.scene.layout.region.Margins.Converter"%>
 <%@page import="Model.user"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.GregorianCalendar"%>
+<%@page import="Model.money_management"%>
+<%@page import="DAO.moneyManagementDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -92,7 +97,7 @@
 			  <%  if(ng!=null  && ng.getRole() == 1  ){%>
 				    <a class="dropdown-item" href="/revenue_management/user_management">User Management</a>
 				  <%}%>
-				    <a class="dropdown-item" href="#">Logout</a>
+				    <a class="dropdown-item" href="user_logout">Logout</a>
 				  </div>
 				</div>
 				  <% } %>
@@ -122,12 +127,26 @@
                     <div class="col mr-2">
                       
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">additional income / expense</div>
-                      <form class="user">
+                      <form class="user" action="money_add" method="post" role="form">
                     <div class="form-group">
                       <input type="text" name="money" class="form-control form-control-user" placeholder="amount of money...">
                     </div>
                     
+                    <%
+                   
+                    GregorianCalendar cal = new GregorianCalendar();
+                    int date = cal.get(Calendar.DATE);
+                    int month = cal.get(Calendar.MONTH)+1;
+                    int year = cal.get(Calendar.YEAR);
+                    String dateTime = (date+ "/" + month + "/" +year);
+                    
+                     %>
                     <div class="form-group">
+                    
+                     <%  if(ng!=null){%>
+                     <input type="hidden" id="userId" name="userId" value="<%=ng.getID()%>" />
+                     <%} %>
+                     <input type="hidden" id="userId" name="date" value="<%=dateTime%>" />
                     <div class="d-flex justify-content-around">
                      	<label class="radio-inline"><input type="radio" id="1" name="type" value="1" >  revenue</label>
 						<label class="radio-inline"><input type="radio" id="2" name="type" value="2">  expenditure</label>
@@ -141,10 +160,9 @@
                     
                      <div class="d-flex justify-content-around">
                      <div class="col-lg-6">
-	                   <a class="btn btn-primary btn-user btn-block" style="color: white" onclick="getDataFromElement()">
+	                   <button class="btn btn-primary btn-user btn-block" style="color: white" type="submit">
 	                      Add
-	                      
-	                    </a>
+	                    </button>
 	                   </div>
 	                 </div>
 	                   
@@ -243,19 +261,35 @@
                     	<table class="table">
 						  <thead>
 						    <tr>
-						    
+						    <th scope="col"># </th>
 						      <th scope="col">AMOUNT </th>
 						      <th scope="col">TYPE</th>
 						      <th scope="col">EXPLAIN</th>
 						      <th scope="col">DATE</th>
+						      <th scope="col"></th>
 						    </tr>
 						  </thead>
 						  <tbody id="tbody">
 						  
-						  <script>
-						  getLocalStorage();
-						  </script>
-						    
+		                     <%  if(ng!=null ){%>
+		                     <% int uId =  ng.getID();%>
+		                    	<%	int id=1; 
+									List<money_management> mn = moneyManagementDAO.listMoney(uId);
+									for(money_management m : mn) {
+								%>
+							<tr>
+								<td><%=id++ %></td>
+								<td><%= m.getMoney() %></td>
+								<td><%= m.getType() %></td>
+								<td><%= m.getExplain() %></td>
+								<td><%= m.getDate() %></td>	
+							
+							 <td class='text-center'><a class="btn btn-danger btn-circle btn-sm" onclick='return confirm("Delete <%=m.getExplain() %>?")' href='money_remove?id=<%=m.getID()%>'><i class="fas fa-trash"></i></a></td>
+							 
+							</tr>
+							<%} %>
+							
+							<%} %>
 						  </tbody>
 						</table>
                   </div>

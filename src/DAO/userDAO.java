@@ -74,7 +74,7 @@ public class userDAO {
 		}
 		return false;
 	}
-	public static boolean Them(String name, String username, String password)
+	public static boolean Add(String name, String username, String password)
 	{
 		String sql = "INSERT INTO `users`(`name`, `username`, `password`) "
 				+ "VALUES ('"+name+"','"+username+"','"+password+"')";
