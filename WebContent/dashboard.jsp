@@ -95,7 +95,7 @@
 				  <div class="dropdown-menu">
 			<% System.out.println(ng.getRole()); %>
 			  <%  if(ng!=null  && ng.getRole() == 1  ){%>
-				    <a class="dropdown-item" href="/revenue_management/user_management">User Management</a>
+				    <a class="dropdown-item" href="/money_management/user_management.jsp">User Management</a>
 				  <%}%>
 				    <a class="dropdown-item" href="user_logout">Logout</a>
 				  </div>

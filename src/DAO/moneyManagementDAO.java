@@ -117,5 +117,18 @@ public class moneyManagementDAO {
 			return false;
 		}
 	}
+	
+	public static boolean RemoveAll(int id) {
+		String sql = "DELETE FROM `revenues_expenditure` WHERE idUser = '"+id+"'";
+		System.out.print(sql);
+		try {
+			new connect().excuteSql(sql);
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
 
 }

@@ -98,8 +98,9 @@ public class userDAO {
 			return false;
 		}
 	}
-	public static boolean Xoa(int id) {
-		String sql = "DELETE FROM `users` WHERE id = '"+id+"'";
+	public static boolean Delete(int id) {
+		String sql = "DELETE FROM `users` WHERE id = "+id+"";
+		System.out.print(sql);
 		try {
 			new connect().excuteSql(sql);
 			return true;
