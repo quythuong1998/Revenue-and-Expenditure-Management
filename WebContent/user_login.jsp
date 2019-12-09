@@ -43,10 +43,10 @@
                     
                    
                   <div class="text-center">
-                    <a class="small" href="forgot-password.html">Forgot Password?</a>
+                    <a class="small" href="user_register.jsp">Forgot Password?</a>
                   </div>
                   <div class="text-center">
-                    <a class="small" href="register.html">Create an Account!</a>
+                    <a class="small" href="user_register.jsp">Create an Account!</a>
                   </div>
                   
                   <%user u =(user) session.getAttribute("username");%>

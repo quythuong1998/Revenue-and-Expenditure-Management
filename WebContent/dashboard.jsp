@@ -17,6 +17,7 @@
                   response.sendRedirect(response.encodeRedirectURL("/money_management/user_login.jsp"));
            
               } %>
+                   
 </head>
 <body>
 <div class="container">
@@ -203,7 +204,7 @@
 											sumExpenditure +=Integer.parseInt(m1.getMoney());
 									}
 						sum=sumRevenue-sumExpenditure;%>
-						<div><%=sumRevenue %></div>
+						
                        
                       
                       
@@ -213,7 +214,7 @@
                           
                           
                          	 <div class="h1 mb-0 font-weight-bold text-gray-800" id="revenue"> 
-                         	 
+                         	 <%=sumRevenue %> $
                          	 </div>
                        	  
                           
@@ -236,8 +237,10 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">total spending</div>
-                     <div><%=sumExpenditure %></div>
-                     <div class="h1 mb-0 font-weight-bold text-gray-800" id="spending"></div>
+                    
+                     <div class="h1 mb-0 font-weight-bold text-gray-800" id="spending">
+                     <%=sumExpenditure %> $
+                     </div>
                        	  
                           
                           
@@ -303,7 +306,7 @@
 								<td><%= m.getExplain() %></td>
 								<td><%= m.getDate() %></td>	
 							
-							 <td class='text-center'><a class="btn btn-danger btn-circle btn-sm" onclick='return confirm("Delete <%=m.getExplain() %>?")' href='money_remove?id=<%=m.getID()%>'><i class="fas fa-trash"></i></a></td>
+							 <td class='text-center'><a class="btn btn-danger btn-circle btn-sm" onclick='return confirm("Delete <%=m.getExplain() %>?")' href='money_remove?id=<%=m.getID()%>'>x</a></td>
 							 
 							</tr>
 							<%} %>
@@ -329,7 +332,7 @@
                   <div class="chart-pie pt-4 pb-2 d-flex align-items-center justify-content-between">
                      <div class="h1 mb-0 font-weight-bold text-gray-800" id="balance">
                      
-                     	<div style="padding-left:90px"><%=sum %></div>
+                     	<div style="padding-left:90px"><%=sum %> $</div>
                   		<%}%>
                      </div>
                      
